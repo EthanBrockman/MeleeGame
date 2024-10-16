@@ -1,21 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    float health = 3;
+    
+    public float health = 10;
+    
 
-    private void OnCollisionEnter(Collision collision)
+    public void DamageCheck(float damage)
     {
-        if (collision.gameObject.name == "Sword")
-        {
-            health -= 1;
-        }
+        health -= damage;
         if (health < 0)
         {
             Destroy(gameObject);
         }
     }
 }
+    
+    
+        
+
+      
+
