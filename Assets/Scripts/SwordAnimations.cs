@@ -8,7 +8,7 @@ using UnityEngine;
 public class SwordAnimations : MonoBehaviour
 {
     public float DelayBetweenAttacks = 1; // Delay between attack animations
-    private float DelayBetweenDamaged = 0; // Creates a delay between the animation dealing damage so that animations dont deal more than attack per animation
+    private float delayBetweenDamaged = 0; // Creates a delay between the animation dealing damage so that animations dont deal more than attack per animation
     private float attackDelay = 0; // delay but private
     private Animator ani;
     private bool attack = false; // Used for animation events along with its methods
@@ -17,27 +17,41 @@ public class SwordAnimations : MonoBehaviour
     {
         attack = true;
     }
+    
     void TurnOffAttack()
     {
         attack = false;
     }
-    
-    private void OnCollisionEnter(Collision col)
+    public float DelayBetweendamaged
+    {
+        get { return delayBetweenDamaged; }
+        set { delayBetweenDamaged = value; }
+    }
+    public bool Attack()
+    {
+        return attack;
+    }
+    private void OnCollisionEnter(Collision collision)
     {
         
         Enemy enemyScript;
-        bool isEnemy = col.gameObject.TryGetComponent<Enemy>(out enemyScript);
+        bool isEnemy = collision.gameObject.TryGetComponent<Enemy>(out enemyScript);
+        
+
         if (attack && isEnemy)
         {
             
-            if (DelayBetweenDamaged > 0)
+            if (DelayBetweendamaged > 0)
             {
-                col.gameObject.GetComponent<Enemy>().DamageCheck(1);
+                collision.gameObject.GetComponent<Enemy>().DamageCheck(1);
             }
-            Debug.Log(DelayBetweenDamaged);
-            DelayBetweenDamaged = 0;
+            Debug.Log(DelayBetweendamaged);
+            DelayBetweendamaged = 0;
         }
     }
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -68,9 +82,9 @@ public class SwordAnimations : MonoBehaviour
 
                 Debug.Log("Player attacks");
                 attackDelay = DelayBetweenAttacks;
-                if (DelayBetweenDamaged <= 0)
+                if (delayBetweenDamaged <= 0)
                 {
-                    DelayBetweenDamaged = 1;
+                    delayBetweenDamaged = 1;
                 }
 
         }

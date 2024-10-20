@@ -359,7 +359,9 @@
 "Assets/Scripts/ItemRotation.cs"
 "Assets/Scripts/MeleeGameBehavior.cs"
 "Assets/Scripts/PlayerBehavior.cs"
+"Assets/Scripts/ShieldAnimations.cs"
 "Assets/Scripts/SwordAnimations.cs"
+"Assets/Scripts/SwordHitbox.cs"
 -langversion:9.0
 /deterministic
 /optimize+
