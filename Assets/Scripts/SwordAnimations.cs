@@ -1,3 +1,5 @@
+// Ethan Brockman
+
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,27 +10,32 @@ using UnityEngine;
 public class SwordAnimations : MonoBehaviour
 {
     public float DelayBetweenAttacks = 1; // Delay between attack animations
-    private float delayBetweenDamaged = 0; // Creates a delay between the animation dealing damage so that animations dont deal more than attack per animation
+    private double delayBetweenDamaged = 0; // Creates a delay between the animation dealing damage so that animations dont deal more than attack per animation
+    public double damagedDelay = 0.8;
     private float attackDelay = 0; // delay but private
     private Animator ani;
-    private bool attack = false; // Used for animation events along with its methods
+    public bool attack = false; // Used for animation events along with its methods
     public bool AnimationChange = false;
+    [SerializeField] ShieldAnimations sheld;
+     
     void TurnOnAttack()
     {
         attack = true;
+        
     }
     
     void TurnOffAttack()
     {
         attack = false;
     }
-    public float DelayBetweendamaged
+    public double DelayBetweendamaged
     {
         get { return delayBetweenDamaged; }
         set { delayBetweenDamaged = value; }
     }
     public bool Attack()
     {
+     
         return attack;
     }
     private void OnCollisionEnter(Collision collision)
@@ -38,15 +45,16 @@ public class SwordAnimations : MonoBehaviour
         bool isEnemy = collision.gameObject.TryGetComponent<Enemy>(out enemyScript);
         
 
-        if (attack && isEnemy)
+        if (Attack() && isEnemy)
         {
             
-            if (DelayBetweendamaged > 0)
+            if (DelayBetweendamaged <= 0)
             {
                 collision.gameObject.GetComponent<Enemy>().DamageCheck(1);
+                Debug.Log("the enemy was damaged 1");
+                DelayBetweendamaged = damagedDelay;
             }
-            Debug.Log(DelayBetweendamaged);
-            DelayBetweendamaged = 0;
+            
         }
     }
 
@@ -63,30 +71,27 @@ public class SwordAnimations : MonoBehaviour
     void Update()
     {
         attackDelay -= Time.deltaTime;
-        
-        if (Input.GetKey(KeyCode.J) && attackDelay <= 0)
+        DelayBetweendamaged -= Time.deltaTime;
+        if (Input.GetKey(KeyCode.J) && attackDelay <= 0 && this.sheld.ShieldIsPlaying())
         {
-                if (AnimationChange)
-                {
-                    ani.SetTrigger("Attack1");
-                    AnimationChange = false;
+            
+            if (AnimationChange)
+            {
+                ani.SetTrigger("Attack1");
+                AnimationChange = false;
 
-                }
-                else
-                {
-                    ani.SetTrigger("Attack2");
-                    AnimationChange = true;
-                }
+            }
+            else
+            {
+                ani.SetTrigger("Attack2");
+                AnimationChange = true;
+            }
 
 
 
-                Debug.Log("Player attacks");
-                attackDelay = DelayBetweenAttacks;
-                if (delayBetweenDamaged <= 0)
-                {
-                    delayBetweenDamaged = 1;
-                }
-
+            Debug.Log("Player attacks");
+            attackDelay = DelayBetweenAttacks;
+               
         }
             
         
