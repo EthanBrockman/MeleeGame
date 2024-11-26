@@ -72,7 +72,7 @@ public class SwordAnimations : MonoBehaviour
     {
         attackDelay -= Time.deltaTime;
         DelayBetweendamaged -= Time.deltaTime;
-        if (Input.GetKey(KeyCode.J) && attackDelay <= 0 && this.sheld.ShieldIsPlaying())
+        if (Input.GetKey(KeyCode.J) && attackDelay <= 0 && this.sheld.ShieldIsPlaying)
         {
             
             if (AnimationChange)

@@ -17,9 +17,9 @@ public class ShieldAnimations : MonoBehaviour
         
     }
 
-    public bool ShieldIsPlaying()
+    public bool ShieldIsPlaying
     {
-        return shieldIsPlaying;
+        get {  return shieldIsPlaying; }
     }
 
     // Update is called once per frame

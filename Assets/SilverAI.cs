@@ -11,7 +11,7 @@ public class SilverAI : MonoBehaviour
     float attackDelay = 7;
     float attackDelayUpdate = 0;
     bool IsAttack = false;
-    
+
 
     [SerializeField] SilverAttack instance;
     [SerializeField] GameObject play;
@@ -41,13 +41,13 @@ public class SilverAI : MonoBehaviour
                 
                 this.gameObject.GetComponent<NavMeshAgent>().destination = chargePoint;
                 ChargeTimeUpdate -= Time.deltaTime;
-                Debug.Log(attackDelayUpdate);
+                
             }
             
         }
         ChargeTimeUpdate = chargeTime;
 
-        Debug.Log(attackDelayUpdate);
+        
 
         IsAttack = false;
         if (x == false)
