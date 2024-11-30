@@ -9,6 +9,8 @@ using UnityEngine;
 
 public class SwordAnimations : MonoBehaviour
 {
+    public MeleeGameBehavior GameManager;
+    private int damage;
     public float DelayBetweenAttacks = 1; // Delay between attack animations
     private double delayBetweenDamaged = 0; // Creates a delay between the animation dealing damage so that animations dont deal more than attack per animation
     public double damagedDelay = 0.8;
@@ -16,7 +18,7 @@ public class SwordAnimations : MonoBehaviour
     private Animator ani;
     public bool attack = false; // Used for animation events along with its methods
     public bool AnimationChange = false;
-    [SerializeField] ShieldAnimations sheld;
+    [SerializeField] ShieldAnimations shield;
      
     void TurnOnAttack()
     {
@@ -50,8 +52,8 @@ public class SwordAnimations : MonoBehaviour
             
             if (DelayBetweendamaged <= 0)
             {
-                collision.gameObject.GetComponent<Enemy>().DamageCheck(1);
-                Debug.Log("the enemy was damaged 1");
+                collision.gameObject.GetComponent<Enemy>().DamageCheck(damage);
+                Debug.Log($"The enemy was damaged {damage} HP");
                 DelayBetweendamaged = damagedDelay;
             }
             
@@ -65,14 +67,16 @@ public class SwordAnimations : MonoBehaviour
     void Start()
     {
         ani = GetComponent<Animator>();
+        GameManager = GameObject.Find("Game Manager").GetComponent<MeleeGameBehavior>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        damage = GameManager.MaxDmg;
         attackDelay -= Time.deltaTime;
         DelayBetweendamaged -= Time.deltaTime;
-        if (Input.GetKey(KeyCode.J) && attackDelay <= 0 && this.sheld.ShieldIsPlaying)
+        if (Input.GetKey(KeyCode.J) && attackDelay <= 0 && this.shield.ShieldIsPlaying)
         {
             
             if (AnimationChange)
