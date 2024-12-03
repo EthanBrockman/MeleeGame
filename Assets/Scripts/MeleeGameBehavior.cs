@@ -48,7 +48,7 @@ public class MeleeGameBehavior : MonoBehaviour
         set
         {
             _enemyCount = value;
-            if(_enemyCount < 0)
+            if (_enemyCount < 0)
             {
                 _enemyCount = 0;
             }
@@ -100,7 +100,7 @@ public class MeleeGameBehavior : MonoBehaviour
 
     public int MaxHP
     {
-        get { return _maxHP;  }
+        get { return _maxHP; }
         set
         {
             _maxHP = value;
@@ -115,13 +115,13 @@ public class MeleeGameBehavior : MonoBehaviour
 
     public int HP
     {
-        get { return _playerHP;  }
+        get { return _playerHP; }
 
         set
         {
             _playerHP = value;
 
-            if(_playerHP > MaxHP)
+            if (_playerHP > MaxHP)
             {
                 _playerHP = MaxHP;
             }
@@ -167,23 +167,48 @@ public class MeleeGameBehavior : MonoBehaviour
         if (wave == 2)
         {
             // intendedEnemyCount = 3;
+            GameObject w2Enemy1 = Instantiate(RustedWarrior, enemySpawn1, enemyRotation);
+            GameObject w2Enemy2 = Instantiate(RustedWarrior, enemySpawn2, enemyRotation);
+            GameObject w2Enemy3 = Instantiate(SilverWarrior, enemySpawn3, enemyRotation);
+
         }
         if (wave == 3)
         {
             //intendedEnemyCount = 5;
+            GameObject w3Enemy1 = Instantiate(RustedWarrior, enemySpawn1, enemyRotation);
+            GameObject w3Enemy2 = Instantiate(RustedWarrior, enemySpawn2, enemyRotation);
+            GameObject w3Enemy3 = Instantiate(RustedWarrior, enemySpawn3, enemyRotation);
+            GameObject w3Enemy4 = Instantiate(SilverWarrior, enemySpawn4, enemyRotation);
+            GameObject w3Enemy5 = Instantiate(SilverWarrior, enemySpawn1, enemyRotation);
         }
         if (wave == 4)
         {
+            // intendedEnemyCount = 7;
+            GameObject w4Enemy1 = Instantiate(RustedWarrior, enemySpawn1, enemyRotation);
+            GameObject w4Enemy2 = Instantiate(RustedWarrior, enemySpawn2, enemyRotation);
+            GameObject w4Enemy3 = Instantiate(RustedWarrior, enemySpawn3, enemyRotation);
+            GameObject w4Enemy4 = Instantiate(SilverWarrior, enemySpawn4, enemyRotation);
+            GameObject w4Enemy5 = Instantiate(SilverWarrior, enemySpawn1, enemyRotation);
+            GameObject w4Enemy6 = Instantiate(SilverWarrior, enemySpawn2, enemyRotation);
+            GameObject w4Enemy7 = Instantiate(DarkWarrior, enemySpawn3, enemyRotation);
+        }
+
+        if (wave >= 5)
+        {
+            GameObject w5Enemy1 = Instantiate(RustedWarrior, enemySpawn1, enemyRotation);
+            GameObject w5Enemy2 = Instantiate(RustedWarrior, enemySpawn2, enemyRotation);
+            GameObject w5Enemy3 = Instantiate(RustedWarrior, enemySpawn3, enemyRotation);
+            GameObject w5Enemy4 = Instantiate(RustedWarrior, enemySpawn4, enemyRotation);
+            GameObject w5Enemy5 = Instantiate(SilverWarrior, enemySpawn1, enemyRotation);
+            GameObject w5Enemy6 = Instantiate(SilverWarrior, enemySpawn2, enemyRotation);
+            GameObject w5Enemy7 = Instantiate(SilverWarrior, enemySpawn3, enemyRotation);
+            GameObject w5Enemy8 = Instantiate(DarkWarrior, enemySpawn4, enemyRotation);
+            GameObject w5Enemy9 = Instantiate(DarkWarrior, enemySpawn1, enemyRotation);
+            GameObject w5Enemy10 = Instantiate(DarkWarrior, enemySpawn2, enemyRotation);
             // intendedEnemyCount = 10;
         }
-        if (wave == 5)
-        {
-            // intendedEnemyCount = 15;
-        }
-        if(wave > 5)
-        {
-            //iEC = 20;
-        }
+    
+
         Wave++;
         Debug.Log($"Wave {Wave} starting!");
         waveChanged = false;
