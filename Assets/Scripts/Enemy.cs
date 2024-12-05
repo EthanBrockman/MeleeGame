@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
 
     private int hpDrop;
 
+    private bool lootDropped = false;
+
     private Vector3 enemyPosition = new Vector3();
 
     private Quaternion coinRotation = new Quaternion(90, 0, 90, 1);
@@ -30,7 +32,6 @@ public class Enemy : MonoBehaviour
         Coin = GameObject.Find("GoldCoin");
         HPDrop = GameObject.Find("Health Pickup");
         GameManager.EnemyCount++;
-        GameManager.EnemiesSpawned++;
         enemyCounted = true;
     }
     public void DamageCheck(float damage)
@@ -51,20 +52,26 @@ public class Enemy : MonoBehaviour
     {
         if (isDestroyed == true)
         {
-            GameManager.EnemyCount--;
-
-            hpDrop = UnityEngine.Random.Range(0, 3);
-
-            GameObject newCoin = Instantiate(Coin, enemyPosition, coinRotation);
-
-            Debug.Log("Coin Dropped!");
-
-            if (hpDrop == 1)
+            if(lootDropped == false)
             {
-                GameObject newHealthPickup = Instantiate(HPDrop, enemyPosition, hpRotation);
-                Debug.Log("Health Pickup Dropped!");
+                lootDropped = true;
+
+                GameManager.EnemyCount--;
+
+                hpDrop = UnityEngine.Random.Range(0, 3);
+
+                GameObject newCoin = Instantiate(Coin, enemyPosition, coinRotation);
+
+                Debug.Log("Coin Dropped!");
+
+                if (hpDrop == 1)
+                {
+                    GameObject newHealthPickup = Instantiate(HPDrop, enemyPosition, hpRotation);
+                    Debug.Log("Health Pickup Dropped!");
+                }
+
+                GameManager.KillCount++;
             }
-            GameManager.KillCount++;
         }
     }
 
@@ -74,7 +81,6 @@ public class Enemy : MonoBehaviour
         {
             enemyCounted = true;
             GameManager.EnemyCount++;
-            GameManager.EnemiesSpawned++;
         }
     }
 }

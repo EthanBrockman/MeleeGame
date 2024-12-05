@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -20,16 +18,14 @@ public class MeleeGameBehavior : MonoBehaviour
 
     private int _enemyCount = 0;
 
-    private int _enemiesSpawned = 0;
-
     private int _killCount = 0;
 
     private bool waveChanged = false;
 
     private Vector3 enemySpawn1 = new Vector3(-37.6988754f, 1.000000f, 33.2463913f);
     private Vector3 enemySpawn2 = new Vector3(22.7776318f, 1.000000f, 42.7858047f);
-    private Vector3 enemySpawn3 = new Vector3(75.1998749f, 1.000000f, 10.838541f);
-    private Vector3 enemySpawn4 = new Vector3(-68.1127777f, 1.000000f, 10.9442091f);
+    private Vector3 enemySpawn3 = new Vector3(-50.8132706f, 1.4799999f, 12.0569477f);
+    private Vector3 enemySpawn4 = new Vector3(56.0710602f, 1.4799999f, 11.5811357f);
 
     private Quaternion enemyRotation = new Quaternion(0, 0, 0, 1);
 
@@ -37,10 +33,15 @@ public class MeleeGameBehavior : MonoBehaviour
     public GameObject RustedWarrior;
     public GameObject DarkWarrior;
 
+    public GameObject Player;
+
     public TMP_Text HealthText;
     public TMP_Text CoinsText;
     public TMP_Text WaveText;
     public TMP_Text EnemiesText;
+    public TMP_Text DeathText;
+
+    public UnityEngine.UI.Button RetryButton;
 
     public int EnemyCount
     {
@@ -53,19 +54,6 @@ public class MeleeGameBehavior : MonoBehaviour
                 _enemyCount = 0;
             }
             EnemiesText.text = "Enemies Remaining: " + EnemyCount;
-        }
-    }
-
-    public int EnemiesSpawned
-    {
-        get { return _enemiesSpawned; }
-        set
-        {
-            _enemiesSpawned = value;
-            if (_enemiesSpawned < 0)
-            {
-                _enemiesSpawned = 0;
-            }
         }
     }
 
@@ -93,7 +81,11 @@ public class MeleeGameBehavior : MonoBehaviour
 
     public void RestartScene()
     {
-        SceneManager.LoadScene(0);
+        Debug.Log("Restarting");
+
+        //SceneManager.LoadScene("MainScene");
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         Time.timeScale = 1f;
     }
@@ -125,6 +117,17 @@ public class MeleeGameBehavior : MonoBehaviour
             {
                 _playerHP = MaxHP;
             }
+        
+            if(_playerHP <= 0)
+            {
+                //Destroy(Player);
+
+                DeathText.text = "YOU DIED! You slayed " + KillCount + " enemies!";
+
+                PlayerBehavior.GameComplete();
+
+                RetryButton.gameObject.SetActive(true);
+            }
 
             HealthText.text = "Health: " + HP;
         }
@@ -153,16 +156,18 @@ public class MeleeGameBehavior : MonoBehaviour
         RustedWarrior = GameObject.Find("RustedWarrior");
         DarkWarrior = GameObject.Find("DarkWarrior");
 
+        Player = GameObject.Find("Player");
+
         WaveStart(1);
     }
 
-    void WaveStart(int wave) //SpawnEnemies(int wave)
+    void WaveStart(int wave) //spawn enemies(int wave)
     {
         if (wave == 1)
         {
             //intendedEnemyCount = 2;
-            GameObject w1Enemy1 = Instantiate(RustedWarrior, enemySpawn1, enemyRotation);
-            GameObject w1Enemy2 = Instantiate(RustedWarrior, enemySpawn2, enemyRotation);
+            GameObject w1Enemy1 = Instantiate(RustedWarrior, enemySpawn3, enemyRotation);
+            GameObject w1Enemy2 = Instantiate(RustedWarrior, enemySpawn4, enemyRotation);
         }
         if (wave == 2)
         {
