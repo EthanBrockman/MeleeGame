@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 965c78829e767467798dc2d419b1e3ef, type: 2}
+  - {fileID: 2100000, guid: bdbae29bb151cd945b1e75165b273153, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -171,7 +171,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: bdbae29bb151cd945b1e75165b273153, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -277,7 +277,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 965c78829e767467798dc2d419b1e3ef, type: 2}
+  - {fileID: 2100000, guid: bdbae29bb151cd945b1e75165b273153, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -332,6 +332,7 @@ GameObject:
   - component: {fileID: 4370515393936958589}
   - component: {fileID: 8729696830967738636}
   - component: {fileID: 831375589632553073}
+  - component: {fileID: 1332941026979216960}
   m_Layer: 0
   m_Name: HP
   m_TagString: Untagged
@@ -427,6 +428,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1332941026979216960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548358577581207872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1bb980b34bbf4fc78354897c623480b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameManager: {fileID: 0}
+  healthPriceText: {fileID: 6775866728883011164}
 --- !u!1 &1851536301056254166
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,7 +846,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 965c78829e767467798dc2d419b1e3ef, type: 2}
+  - {fileID: 2100000, guid: bdbae29bb151cd945b1e75165b273153, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -936,7 +951,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 965c78829e767467798dc2d419b1e3ef, type: 2}
+  - {fileID: 2100000, guid: bdbae29bb151cd945b1e75165b273153, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1220,7 +1235,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 965c78829e767467798dc2d419b1e3ef, type: 2}
+  - {fileID: 2100000, guid: bdbae29bb151cd945b1e75165b273153, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1274,7 +1289,6 @@ GameObject:
   - component: {fileID: 7893103678042373266}
   - component: {fileID: 2344341457472350374}
   - component: {fileID: 6775866728883011164}
-  - component: {fileID: 1924611894762936159}
   m_Layer: 0
   m_Name: HPText
   m_TagString: Untagged
@@ -1435,20 +1449,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 2344341457472350374}
   m_maskType: 0
---- !u!114 &1924611894762936159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7575064849296202295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e30d1854683ca4154bb15e118eb51081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameManager: {fileID: 0}
-  healthPriceText: {fileID: 6775866728883011164}
 --- !u!1 &7738728822386251135
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,7 +1683,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a15bdc03811a74bd4832b6f8cbbbf25a, type: 2}
+  - {fileID: 2100000, guid: facedb583a957416eb82c8a550e5ae4b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1737,7 +1737,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8069702413817179253}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09ce88e59d824405695d74ac3f136d89, type: 3}
+  m_Script: {fileID: 11500000, guid: 7892b57fa23dd4f2bbbb4679e2e1a3c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   GameManager: {fileID: 0}
