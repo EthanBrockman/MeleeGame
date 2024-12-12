@@ -20,7 +20,13 @@ public class PlayerBehavior : MonoBehaviour
     private float rotationX = 0;
     private CharacterController characterController;
 
-    private bool canMove = true;
+    private static bool canMove = true;
+
+    public static bool CanMove
+    {
+        set { canMove = value; }
+        get { return canMove; }
+    }
 
     void Start()
     {
@@ -78,5 +84,12 @@ public class PlayerBehavior : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
+    }
+
+    public static void GameComplete()
+    {
+        CanMove = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
